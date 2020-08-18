@@ -6,17 +6,26 @@
         <img src="../assets/allNotes.png" />
         <p>Все записи</p>
       </div>
-      <div class="header__button">
+      <div class="header__button" @click="showPopup = true">
         <img src="../assets/addNote.png" />
         <p>Добавить запись</p>
       </div>
     </div>
+    <Popup v-if="showPopup" @close="showPopup = false" />
   </div>
 </template>
 
 <script>
+import Popup from "./Popup";
+
 export default {
-  name: "Header"
+  name: "Header",
+  components: {
+    Popup
+  },
+  data: () => ({
+    showPopup: false
+  })
 };
 </script>
 
