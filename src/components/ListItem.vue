@@ -47,9 +47,20 @@ export default {
       margin-left: 5px;
     }
   }
+  @media (max-width: 767px) {
+    padding: 10px;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+  }
 }
 .link {
   text-decoration: none;
   color: black;
+  &__title {
+    font-size: 16px;
+  }
+  &__descr {
+    font-size: 12px;
+  }
 }
 </style>

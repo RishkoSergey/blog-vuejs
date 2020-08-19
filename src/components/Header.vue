@@ -2,7 +2,7 @@
   <div class="header">
     <img src="../assets/logo.png" class="header__logo" />
     <div class="header__buttons">
-      <div class="header__button">
+      <div class="header__button" @click="$router.push('/')">
         <img src="../assets/allNotes.png" />
         <p>Все записи</p>
       </div>

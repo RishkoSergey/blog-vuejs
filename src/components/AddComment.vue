@@ -17,7 +17,7 @@
       <button class="addComment__save" @click="saveComment" :disabled="disable">
         Сохранить
       </button>
-      <p v-if="disable">Каждое поле должно быть заполнено</p>
+      <p class="alert" v-if="disable">Каждое поле должно быть заполнено</p>
     </div>
   </div>
 </template>
@@ -81,6 +81,16 @@ export default {
       margin-left: 10px;
       color: gray;
     }
+  }
+  @media (max-width: 767px) {
+    &__title {
+      font-size: 16px;
+    }
+  }
+}
+.alert {
+  @media (max-width: 767px) {
+    font-size: 12px;
   }
 }
 </style>

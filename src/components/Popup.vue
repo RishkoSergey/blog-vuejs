@@ -33,32 +33,51 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { mapMutations, mapState } from "vuex";
 
 export default {
   name: "Popup",
+  props: ["id"],
   data: () => ({
     title: "",
     smallDescr: "",
     fullDescr: ""
   }),
   computed: {
+    ...mapState(["notes"]),
     disable: function() {
       return !(this.title && this.smallDescr && this.fullDescr);
     }
   },
   methods: {
-    ...mapMutations(["createNote"]),
+    ...mapMutations(["createNote", "editNote"]),
     closePopup: function() {
       this.$emit("close");
     },
     saveNote: function() {
-      this.createNote({
-        title: this.title,
-        smallDescr: this.smallDescr,
-        fullDescr: this.fullDescr
-      });
+      if (this.id) {
+        this.editNote({
+          id: this.id,
+          title: this.title,
+          smallDescr: this.smallDescr,
+          fullDescr: this.fullDescr
+        });
+      } else {
+        this.createNote({
+          title: this.title,
+          smallDescr: this.smallDescr,
+          fullDescr: this.fullDescr
+        });
+      }
       this.closePopup();
+    }
+  },
+  mounted() {
+    if (this.id) {
+      const note = this.notes.find(note => note.id == this.id);
+      this.title = note.title;
+      this.smallDescr = note.smallDescr;
+      this.fullDescr = note.fullDescr;
     }
   }
 };

@@ -27,6 +27,24 @@ export default new Vuex.Store({
         : noteWithComment.comments[noteWithComment.comments.length - 1].id + 1;
       noteWithComment.comments.push(comment);
       localStorage.setItem("notes", JSON.stringify(state.notes));
+    },
+    editNote(state, note) {
+      const editedNote = state.notes.find(item => item.id == note.id);
+      editedNote.title = note.title;
+      editedNote.smallDescr = note.smallDescr;
+      editedNote.fullDescr = note.fullDescr;
+      localStorage.setItem("notes", JSON.stringify(state.notes));
+    },
+    deleteNote(state, id) {
+      const index = state.notes.findIndex(item => item.id == id);
+      state.notes.splice(index, 1);
+      localStorage.setItem("notes", JSON.stringify(state.notes));
+    },
+    deleteComment(state, comment) {
+      const note = state.notes.find(item => item.id == comment.noteId);
+      const index = note.comments.findIndex(item => item.id == comment.id);
+      note.comments.splice(index, 1);
+      localStorage.setItem("notes", JSON.stringify(state.notes));
     }
   },
   state: {

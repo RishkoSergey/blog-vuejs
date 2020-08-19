@@ -27,5 +27,8 @@ export default {
 <style lang="scss" scoped>
 .list {
   padding: 30px 20px 0 20px;
+  @media (max-width: 767px) {
+    padding: 15px 10px 0 10px;
+  }
 }
 </style>
