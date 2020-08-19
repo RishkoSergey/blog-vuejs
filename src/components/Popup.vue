@@ -94,9 +94,6 @@ export default {
     &__title {
       margin-top: 20px;
     }
-    &__small {
-      height: 40px;
-    }
   }
   &__close {
     position: absolute;

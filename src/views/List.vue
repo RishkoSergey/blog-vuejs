@@ -3,6 +3,7 @@
     <div v-if="notes.length">
       <ListItem v-for="note in notes" :key="note.id" :note="note" />
     </div>
+    <h1 v-else>Записей пока нет</h1>
   </div>
 </template>
 

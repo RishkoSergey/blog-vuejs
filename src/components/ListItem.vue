@@ -15,7 +15,7 @@
 export default {
   name: "ListItem",
   props: ["note"]
-}
+};
 </script>
 
 <style lang="scss" scoped>
