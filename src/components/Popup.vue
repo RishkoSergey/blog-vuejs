@@ -4,27 +4,30 @@
       <textarea
         v-model="title"
         placeholder="Введите название записи"
-        rows=2
+        rows="2"
         class="popup__content__title"
       />
       <textarea
         v-model="smallDescr"
         placeholder="Введите краткое описание"
-        rows=4
+        rows="4"
         class="popup__content__small"
       />
       <textarea
         v-model="fullDescr"
         placeholder="Введите полное описание"
-        rows=6
+        rows="6"
         class="popup__content__full"
       />
       <div class="popup__close" @click="closePopup">
         <img src="../assets/close.png" />
       </div>
-      <button class="popup__checkout" @click="saveNote">
-        Сохранить
-      </button>
+      <div class="popup__bottom">
+        <button class="popup__save" @click="saveNote" :disabled="disable">
+          Сохранить
+        </button>
+        <p v-if="disable">Каждое поле должно быть заполнено</p>
+      </div>
     </div>
   </div>
 </template>
@@ -39,6 +42,11 @@ export default {
     smallDescr: "",
     fullDescr: ""
   }),
+  computed: {
+    disable: function() {
+      return !(this.title && this.smallDescr && this.fullDescr);
+    }
+  },
   methods: {
     ...mapMutations(["createNote"]),
     closePopup: function() {
@@ -100,16 +108,20 @@ export default {
       height: 30px;
     }
   }
-  &__checkout {
+  &__save {
     width: 150px;
     border-radius: 5px;
     margin-bottom: 10px;
     border: 1px solid gray;
     background-color: #ededed;
+    margin-left: 20px;
   }
-  &__link {
-    text-decoration: none;
-    color: black;
+  &__bottom {
+    display: flex;
+    p {
+      margin-left: 10px;
+      color: gray;
+    }
   }
   @media (max-width: 767px) {
     margin-left: -20px;
